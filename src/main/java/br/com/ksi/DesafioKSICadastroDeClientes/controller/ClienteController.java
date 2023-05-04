@@ -23,6 +23,7 @@ public class ClienteController {
     // Rota para Abrir painel de clientes
     @GetMapping("/painel")
     public ModelAndView painel() {
+        // ModelAndView para mapear e retornar atributos para o HTML
         ModelAndView mv = new ModelAndView("painel");
         mv.addObject("clienteList", clienteList);
         return mv;
@@ -31,10 +32,10 @@ public class ClienteController {
     // Metodo para cadastro de cliente
     @PostMapping("/create")
     public String create(Cliente cliente) {
-        Long id = clienteList.size() + 1L;
+        Long id = clienteList.size() + 1L; // Criar o id
         cliente.setId(id);
         clienteList.add(cliente);
 
-        return "confirmacaoCadastro";
+        return "confirmacaoCadastro"; // Abrir tela de confirmação de cadastro
     }
 }

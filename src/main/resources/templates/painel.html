@@ -18,18 +18,26 @@
             <th scope="col">Nome</th>
             <th scope="col">CPF</th>
             <th scope="col">Data de Nascimento</th>
+            <th scope="col">Termos e Politicas</th>
             <th scope="col">#</th>
             <th scope="col">#</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            
+            <!-- Exibindo dinamicamente os Clientes -->
+          <tr data-th-each="cliente : ${clienteList}">
+            <th data-th-text="${cliente.id}" scope="row"></th>
+            <td data-th-text="${cliente.nome}"></td>
+            <td data-th-text="${cliente.cpf}"></td>
+            <!-- Uso de {{}} é para usar o padrão do Model-->
+            <td data-th-text="${{cliente.dataNascimento}}"></td>
+            <td data-th-text="${cliente.termosPoliticas}"></td>
           </tr>
           
         </tbody>
       </table>
+
+
+      <a href="/create"> Cadastro cliente </a>
 </body>
 </html>

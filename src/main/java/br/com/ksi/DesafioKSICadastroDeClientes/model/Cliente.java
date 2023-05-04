@@ -1,5 +1,7 @@
 package br.com.ksi.DesafioKSICadastroDeClientes.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Cliente {
@@ -7,6 +9,7 @@ public class Cliente {
     private Long id;
     private String nome;
     private String cpf;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dataNascimento;
     private Boolean termosPoliticas;
 
