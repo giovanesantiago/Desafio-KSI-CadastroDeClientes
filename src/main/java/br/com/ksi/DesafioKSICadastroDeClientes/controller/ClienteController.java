@@ -35,6 +35,6 @@ public class ClienteController {
         cliente.setId(id);
         clienteList.add(cliente);
 
-        return "confirmaçãoCadastro";
+        return "confirmacaoCadastro";
     }
 }
