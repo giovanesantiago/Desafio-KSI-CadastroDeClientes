@@ -32,6 +32,15 @@
             <!-- Uso de {{}} é para usar o padrão do Model-->
             <td data-th-text="${{cliente.dataNascimento}}"></td>
             <td data-th-text="${cliente.termosPoliticas}"></td>
+            <!-- Editar e Excluir Cliente -->
+            <td>
+                <!-- Metodo get passando id a ser editado -->
+                <a th:href="@{'/edit/' + ${cliente.id}}">Editar</a>
+            </td>
+            <td>
+                <a href="">Excluir</a>
+            </td>
+
           </tr>
           
         </tbody>

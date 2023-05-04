@@ -3,6 +3,7 @@ package br.com.ksi.DesafioKSICadastroDeClientes.controller;
 import br.com.ksi.DesafioKSICadastroDeClientes.model.Cliente;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -37,5 +38,18 @@ public class ClienteController {
         clienteList.add(cliente);
 
         return "confirmacaoCadastro"; // Abrir tela de confirmação de cadastro
+    }
+
+    // Editar cliente
+    @GetMapping("/edit/{id}")
+    public ModelAndView edit(@PathVariable("id") Long id) {
+        ModelAndView mv = new ModelAndView("edit");
+
+        // Procurando cliente
+        Cliente clienteFind = clienteList.stream().filter(cliente -> id.equals(cliente.getId()))
+                .findFirst().get();
+
+        mv.addObject("cliente", clienteFind);
+        return mv;
     }
 }
