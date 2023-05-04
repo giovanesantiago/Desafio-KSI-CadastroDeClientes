@@ -8,12 +8,14 @@ public class Cliente {
     private String nome;
     private String cpf;
     private Date dataNascimento;
+    private Boolean termosPoliticas;
 
-    public Cliente(Long id, String nome, String cpf, Date dataNascimento) {
+    public Cliente(Long id, String nome, String cpf, Date dataNascimento, Boolean termosPoliticas) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
+        this.termosPoliticas = termosPoliticas;
     }
 
     public Cliente() {
@@ -49,5 +51,13 @@ public class Cliente {
 
     public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public Boolean getTermosPoliticas() {
+        return termosPoliticas;
+    }
+
+    public void setTermosPoliticas(Boolean termosPoliticas) {
+        this.termosPoliticas = termosPoliticas;
     }
 }
