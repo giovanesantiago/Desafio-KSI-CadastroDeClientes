@@ -1,4 +1,26 @@
-body{
-    padding: 10px !important;
-    
+body {
+    background-color: #001;
+    padding: 70px 10px 100px 10px;
+    color: aliceblue;   
+}
+
+.form {
+    margin: auto;
+    background-color: #15172b;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: 90%;
+    padding: 40px;
+    width: 80%;
+}
+
+.btn-painel {
+    margin-left: 20px;
+}
+
+.invalid{
+    margin: 1px 1px 1px 10px;
+    font-size: 0.9em;
+    font-style: italic;
+    color: red;
 }
