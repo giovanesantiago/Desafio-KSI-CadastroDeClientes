@@ -32,6 +32,7 @@ public class ClienteController {
     public ModelAndView painelHTML() {
         // ModelAndView para mapear e retornar atributos para o HTML
         ModelAndView mv = new ModelAndView("painel");
+        List<Cliente> clienteList = clienteService.findAll();
         mv.addObject("clienteList", clienteList);
         return mv;
     }
@@ -52,9 +53,6 @@ public class ClienteController {
     // Metodo para cadastro de cliente
     @PostMapping("/create")
     public String create(Cliente cliente) {
-        /*Long id = clienteList.size() + 1L; // Criar o id
-        cliente.setId(id);
-        clienteList.add(cliente);*/
 
         clienteService.create(cliente);
 
