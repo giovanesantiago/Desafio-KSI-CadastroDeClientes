@@ -13,26 +13,25 @@
 <body>
 
     <!-- Formulario de cadastro -->
-    <form method="POST" action="/create">
+    <form method="POST" action="/edit" th:object="${cliente}">
+        <input type="hidden" name="id" th:value="${cliente.id} ">
         <!-- Nome -->
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Nome</label>
-            <input type="text" class="form-control" name="nome">
+            <input type="text" class="form-control" name="nome" 
+            th:value="${cliente.nome}">
         </div>
         <!-- CPF  -->
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">CPF</label>
-            <input type="text" class="form-control" name="cpf">
+            <input type="text" class="form-control" name="cpf" 
+            th:value="${cliente.cpf}">
         </div>
         <!-- Data de Nascimento  -->
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Nascimento</label>
-            <input type="text" class="form-control" name="dataNascimento">
-        </div>
-        <!-- Termos -->
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" name="termosPoliticas">
-            <label class="form-check-label" for="exampleCheck1">Concordo com os <a href="#">termos de serviço e política de privacidade </a> da KSI Consultas</label>
+            <input type="text" class="form-control" name="dataNascimento"
+            th:value="${{cliente.dataNascimento}}">
         </div>
         <button type="submit" class="btn btn-primary">Editar</button>
     </form>

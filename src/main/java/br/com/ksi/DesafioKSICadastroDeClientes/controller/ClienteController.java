@@ -18,15 +18,27 @@ public class ClienteController {
 
     // Rota para Abrir tela de cadastro
     @GetMapping("/create")
-    public String home(){
+    public String homeHTML(){
         return "create";
     }
     // Rota para Abrir painel de clientes
     @GetMapping("/painel")
-    public ModelAndView painel() {
+    public ModelAndView painelHTML() {
         // ModelAndView para mapear e retornar atributos para o HTML
         ModelAndView mv = new ModelAndView("painel");
         mv.addObject("clienteList", clienteList);
+        return mv;
+    }
+    // Rota para Abrir edição de clientes
+    @GetMapping("/edit/{id}")
+    public ModelAndView editHTML(@PathVariable("id") Long id) {
+        ModelAndView mv = new ModelAndView("edit");
+
+        // Procurando cliente
+        Cliente clienteFind = clienteList.stream().filter(cliente -> id.equals(cliente.getId()))
+                .findFirst().get();
+
+        mv.addObject("cliente", clienteFind);
         return mv;
     }
 
@@ -39,17 +51,12 @@ public class ClienteController {
 
         return "confirmacaoCadastro"; // Abrir tela de confirmação de cadastro
     }
-
-    // Editar cliente
-    @GetMapping("/edit/{id}")
-    public ModelAndView edit(@PathVariable("id") Long id) {
-        ModelAndView mv = new ModelAndView("edit");
-
-        // Procurando cliente
-        Cliente clienteFind = clienteList.stream().filter(cliente -> id.equals(cliente.getId()))
-                .findFirst().get();
-
-        mv.addObject("cliente", clienteFind);
-        return mv;
+    // Metodo para editar cliente
+    @PostMapping("/edit")
+    public String edit(Cliente clienteNovo) {
+        Cliente clienteFind = clienteList.stream().filter(cliente ->
+                clienteNovo.getId().equals(cliente.getId())).findFirst().get();
+        clienteList.set(clienteList.indexOf(clienteFind), clienteNovo);
+        return "redirect:/painel";
     }
 }
