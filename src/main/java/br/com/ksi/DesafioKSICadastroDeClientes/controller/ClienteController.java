@@ -18,9 +18,6 @@ public class ClienteController {
     @Autowired
     ClienteService clienteService;
 
-    // Lista de clientes temporaria para testes antes de integrar Banco de dados
-    List<Cliente> clienteList = new ArrayList<>();
-
     // Rota para Abrir tela de cadastro
     @GetMapping("/create")
     public String homeHTML(){
@@ -41,11 +38,8 @@ public class ClienteController {
     @GetMapping("/edit/{id}")
     public ModelAndView editHTML(@PathVariable("id") Long id) {
         ModelAndView mv = new ModelAndView("edit");
-
         // Procurando cliente
-        Cliente clienteFind = clienteList.stream().filter(cliente -> id.equals(cliente.getId()))
-                .findFirst().get();
-
+        Cliente clienteFind = clienteService.findById(id);
         mv.addObject("cliente", clienteFind);
         return mv;
     }
@@ -58,21 +52,20 @@ public class ClienteController {
 
         return "confirmacaoCadastro"; // Abrir tela de confirmação de cadastro
     }
+
     // Metodo para editar cliente
     @PostMapping("/edit")
     public String edit(Cliente clienteNovo) {
-        Cliente clienteFind = clienteList.stream().filter(cliente ->
-                clienteNovo.getId().equals(cliente.getId())).findFirst().get();
-        clienteList.set(clienteList.indexOf(clienteFind), clienteNovo);
+
+        clienteService.edit(clienteNovo);
+
         return "redirect:/painel";
     }
 
     // Metodo para Excluir cliente
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id){
-        Cliente clienteFind = clienteList.stream().filter(cliente -> id.equals(cliente.getId()))
-                .findFirst().get();
-        clienteList.remove(clienteList.indexOf(clienteFind));
+
 
         return "redirect:/painel";
     }
