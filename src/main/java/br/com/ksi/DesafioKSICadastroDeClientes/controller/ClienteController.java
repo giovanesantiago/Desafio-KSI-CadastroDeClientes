@@ -1,6 +1,8 @@
 package br.com.ksi.DesafioKSICadastroDeClientes.controller;
 
 import br.com.ksi.DesafioKSICadastroDeClientes.model.Cliente;
+import br.com.ksi.DesafioKSICadastroDeClientes.service.ClienteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,8 @@ import java.util.List;
 
 @Controller
 public class ClienteController {
+    @Autowired
+    ClienteService clienteService;
 
     // Lista de clientes temporaria para testes antes de integrar Banco de dados
     List<Cliente> clienteList = new ArrayList<>();
@@ -22,6 +26,7 @@ public class ClienteController {
     public String homeHTML(){
         return "create";
     }
+
     // Rota para Abrir painel de clientes
     @GetMapping("/painel")
     public ModelAndView painelHTML() {
@@ -30,6 +35,7 @@ public class ClienteController {
         mv.addObject("clienteList", clienteList);
         return mv;
     }
+
     // Rota para Abrir edição de clientes
     @GetMapping("/edit/{id}")
     public ModelAndView editHTML(@PathVariable("id") Long id) {
@@ -46,9 +52,11 @@ public class ClienteController {
     // Metodo para cadastro de cliente
     @PostMapping("/create")
     public String create(Cliente cliente) {
-        Long id = clienteList.size() + 1L; // Criar o id
+        /*Long id = clienteList.size() + 1L; // Criar o id
         cliente.setId(id);
-        clienteList.add(cliente);
+        clienteList.add(cliente);*/
+
+        clienteService.create(cliente);
 
         return "confirmacaoCadastro"; // Abrir tela de confirmação de cadastro
     }
