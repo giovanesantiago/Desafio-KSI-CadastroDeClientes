@@ -44,4 +44,9 @@ public class ClienteService {
         return "ok";
     }
 
+    public String delete(Long id) {
+        clienteRepository.deleteById(id);
+        return "ok";
+    }
+
 }
