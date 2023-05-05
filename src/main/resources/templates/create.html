@@ -13,7 +13,7 @@
 <body>
 
     <!-- Formulario de cadastro -->
-    <form method="POST" action="/create">
+    <form method="POST" action="/create" class="form">
         <!-- Nome -->
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Nome</label>
@@ -35,8 +35,9 @@
             <label class="form-check-label" for="exampleCheck1">Concordo com os <a href="#">termos de serviço e política de privacidade </a> da KSI Consultas</label>
         </div>
         <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <a class="btn-painel" href="/painel"><button type="button" class="btn btn-danger">Cancelar</button></a>
     </form>
     <br/>
-    <a href="/painel"><button type="button" class="btn btn-primary">Painel</button></a>
+    
 </body>
 </html>
