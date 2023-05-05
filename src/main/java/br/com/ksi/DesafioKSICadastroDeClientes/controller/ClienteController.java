@@ -2,6 +2,7 @@ package br.com.ksi.DesafioKSICadastroDeClientes.controller;
 
 import br.com.ksi.DesafioKSICadastroDeClientes.model.Cliente;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -59,4 +60,15 @@ public class ClienteController {
         clienteList.set(clienteList.indexOf(clienteFind), clienteNovo);
         return "redirect:/painel";
     }
+
+    // Metodo para Excluir cliente
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Long id){
+        Cliente clienteFind = clienteList.stream().filter(cliente -> id.equals(cliente.getId()))
+                .findFirst().get();
+        clienteList.remove(clienteList.indexOf(clienteFind));
+
+        return "redirect:/painel";
+    }
+
 }
