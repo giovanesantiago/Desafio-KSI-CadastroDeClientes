@@ -1,5 +1,6 @@
 package br.com.ksi.DesafioKSICadastroDeClientes.service;
 
+import br.com.ksi.DesafioKSICadastroDeClientes.dto.ClienteDTO;
 import br.com.ksi.DesafioKSICadastroDeClientes.model.Cliente;
 import br.com.ksi.DesafioKSICadastroDeClientes.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +21,18 @@ public class ClienteService {
     Validar validar = new Validar();
 
     // Cadastrar Cliente
-    public ModelAndView create(Cliente cliente) {
+    public ModelAndView create(ClienteDTO clienteDTO) {
         ModelAndView mv = new ModelAndView();
         List<String> mensagens = new ArrayList<>();
 
-        if(!validar.nome(cliente.getNome())) {
+        if(!validar.nome(clienteDTO.getNome())) {
             mv.setViewName("create");
             mensagens.add("Nome invalido");
-            mv.addObject("cliente", cliente);
+            mv.addObject("cliente", clienteDTO);
             mv.addObject("msg", mensagens);
         }else {
+            Cliente cliente = new Cliente(clienteDTO.getNome(), clienteDTO.getCpf(),
+                    clienteDTO.getDataNascimento(), clienteDTO.getTermosPoliticas());
             clienteRepository.save(cliente);
             mv.setViewName("confirmacaoCadastro");
         }
@@ -57,7 +60,7 @@ public class ClienteService {
             if(clienteFind.getTermosPoliticas() != null) {
                 clienteNovo.setTermosPoliticas(true);
             }
-            create(clienteNovo);
+            clienteRepository.save(clienteNovo);
         }
         return "ok";
     }

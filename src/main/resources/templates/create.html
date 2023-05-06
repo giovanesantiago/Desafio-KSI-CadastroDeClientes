@@ -14,23 +14,24 @@
 <body onload="buttonOnOff(false)">
 
     <!-- Formulario de cadastro -->
-    <form method="POST" action="/create" class="form" >
+    <form method="POST" action="/create" th:object="${cliente}"  class="form" >
+        <input type="hidden" name="id" th:value="${cliente.id} ">
         <!-- Nome -->
         <div class="mb-3" >
             <label for="exampleInputEmail1" class="form-label">Nome</label>
-            <input type="text" class="form-control" name="nome" onchange="validaNome(this.value)">
+            <input type="text" class="form-control" name="nome" th:value="${cliente.nome}" onchange="validaNome(this.value)">
             <p id="invalid-nome" class="invalid"></p>
         </div>
         <!-- CPF  -->
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">CPF</label>
-            <input id="cpf" type="text" class="form-control" name="cpf" onchange="validaCpf(this.value)">
+            <input id="cpf" type="text" class="form-control" name="cpf"  th:value="${cliente.cpf}" onchange="validaCpf(this.value)">
             <p id="invalid-cpf" class="invalid"></p>
         </div>
         <!-- Data de Nascimento  -->
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Nascimento</label>
-            <input id="nasc" type="date" class="form-control" name="dataNascimento" onchange="validaNasc(this.value)">
+            <input id="nasc" type="date" class="form-control" name="dataNascimento" th:value="${{cliente.dataNascimento}}" onchange="validaNasc(this.value)">
             <p id="invalid-nasc" class="invalid"></p>
         </div>
         <!-- Termos -->
