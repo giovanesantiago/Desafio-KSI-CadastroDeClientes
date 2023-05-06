@@ -17,3 +17,10 @@ body {
 .btn-painel {
     margin-left: 20px;
 }
+
+.invalid{
+    margin: 1px 1px 1px 10px;
+    font-size: 0.9em;
+    font-style: italic;
+    color: red;
+}

@@ -30,7 +30,8 @@
         <!-- Data de Nascimento  -->
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Nascimento</label>
-            <input type="date" class="form-control" name="dataNascimento">
+            <input id="nasc" type="date" class="form-control" name="dataNascimento" onchange="validaNasc(this.value)">
+            <p id="invalid-nasc" class="invalid"></p>
         </div>
         <!-- Termos -->
         <div class="mb-3 form-check">
