@@ -1,40 +1,24 @@
-package br.com.ksi.DesafioKSICadastroDeClientes.model;
+package br.com.ksi.DesafioKSICadastroDeClientes.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-@Entity
-public class Cliente {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class ClienteDTO {
     private String nome;
     private String cpf;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dataNascimento;
     private Boolean termosPoliticas;
 
-    public Cliente(String nome, String cpf, Date dataNascimento, Boolean termosPoliticas) {
+    public ClienteDTO( String nome, String cpf, Date dataNascimento, Boolean termosPoliticas) {
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
         this.termosPoliticas = termosPoliticas;
     }
 
-    public Cliente() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public ClienteDTO() {
     }
 
     public String getNome() {

@@ -1,5 +1,6 @@
 package br.com.ksi.DesafioKSICadastroDeClientes.controller;
 
+import br.com.ksi.DesafioKSICadastroDeClientes.dto.ClienteDTO;
 import br.com.ksi.DesafioKSICadastroDeClientes.model.Cliente;
 import br.com.ksi.DesafioKSICadastroDeClientes.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +18,8 @@ import java.util.List;
 public class ClienteController {
     @Autowired
     ClienteService clienteService;
+
+    DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     // Rota para Abrir tela de cadastro
     @GetMapping("/create")
@@ -45,7 +49,9 @@ public class ClienteController {
 
     // Metodo para cadastro de cliente
     @PostMapping("/create")
-    public String create(Cliente cliente) {
+    public String create(ClienteDTO clienteDTO) {
+
+        Cliente cliente = new Cliente(clienteDTO.getNome(), clienteDTO.getCpf(), clienteDTO.getDataNascimento(), clienteDTO.getTermosPoliticas());
 
         clienteService.create(cliente);
 
