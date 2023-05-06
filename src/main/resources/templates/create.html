@@ -11,12 +11,12 @@
 
     <title>Tela de cadastro</title>
 </head>
-<body>
+<body onload="buttonOnOff(false)">
 
     <!-- Formulario de cadastro -->
-    <form method="POST" action="/create" class="form">
+    <form method="POST" action="/create" class="form" >
         <!-- Nome -->
-        <div class="mb-3">
+        <div class="mb-3" >
             <label for="exampleInputEmail1" class="form-label">Nome</label>
             <input type="text" class="form-control" name="nome" onchange="validaNome(this.value)">
             <p id="invalid-nome" class="invalid"></p>
@@ -35,10 +35,14 @@
         </div>
         <!-- Termos -->
         <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" name="termosPoliticas">
+            <input onclick="buttonOnOff(this.value)" type="checkbox" class="form-check-input" name="termosPoliticas">
             <label class="form-check-label" for="exampleCheck1">Concordo com os <a href="" onclick="abrirTermo()">termos de serviço e política de privacidade </a> da KSI Consultas</label>
         </div>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <div th:each = "mensagem : ${msg}">
+            <p id="invalid" class="invalid" th:text = ${mensagem}></p>
+        </div>
+        <br/>
+        <button id="btn-cadastro" type="submit" class="btn btn-primary">Cadastrar</button>
         <a class="btn-painel" href="/painel"><button type="button" class="btn btn-danger">Cancelar</button></a>
     </form>
     <br/>

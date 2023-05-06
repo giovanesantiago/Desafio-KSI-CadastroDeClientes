@@ -6,6 +6,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 
+
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import java.util.Date;
 
 @Entity
@@ -13,10 +18,15 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+
     private String nome;
+
     private String cpf;
+
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dataNascimento;
+
     private Boolean termosPoliticas;
 
     public Cliente(Long id, String nome, String cpf, Date dataNascimento, Boolean termosPoliticas) {

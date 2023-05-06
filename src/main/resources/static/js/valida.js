@@ -1,4 +1,15 @@
 
+function buttonOnOff(estado) {
+    console.log(estado)
+    if(!estado) {
+        document.getElementById("btn-cadastro").disabled = true;
+    } else {
+        document.getElementById("btn-cadastro").disabled = false;
+    }
+}
+
+
+
 function abrirTermo() {
     alert(" Voce realmente ler os termos ? ")
 }
@@ -9,8 +20,10 @@ function validaNome(value) {
 
     if(temNumero || temCaract) {
         document.getElementById("invalid-nome").innerHTML = 'Nome invalido'
+        return false
     }else {
         document.getElementById("invalid-nome").innerHTML = ''
+        return true;
     }
 
 }
@@ -65,3 +78,6 @@ function validaNasc(value) {
         document.getElementById("invalid-nasc").innerHTML = ''
     }
 }
+
+
+
