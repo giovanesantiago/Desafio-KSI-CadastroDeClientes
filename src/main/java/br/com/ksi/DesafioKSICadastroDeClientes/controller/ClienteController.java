@@ -43,7 +43,9 @@ public class ClienteController {
         ModelAndView mv = new ModelAndView("edit");
         // Procurando cliente
         Cliente clienteFind = clienteService.findById(id);
-        mv.addObject("cliente", clienteFind);
+        ClienteDTO clienteDTO = new ClienteDTO(clienteFind.getId(), clienteFind.getNome(), clienteFind.getCpf(),
+                clienteFind.getDataNascimento(), clienteFind.getTermosPoliticas());
+        mv.addObject("cliente", clienteDTO);
         return mv;
     }
 
@@ -51,7 +53,8 @@ public class ClienteController {
     @PostMapping("/create")
     public String create(ClienteDTO clienteDTO) {
 
-        Cliente cliente = new Cliente(clienteDTO.getNome(), clienteDTO.getCpf(), clienteDTO.getDataNascimento(), clienteDTO.getTermosPoliticas());
+        Cliente cliente = new Cliente(clienteDTO.getNome(), clienteDTO.getCpf(),
+                clienteDTO.getDataNascimento(), clienteDTO.getTermosPoliticas());
 
         clienteService.create(cliente);
 
@@ -60,7 +63,9 @@ public class ClienteController {
 
     // Metodo para editar cliente
     @PostMapping("/edit")
-    public String edit(Cliente clienteNovo) {
+    public String edit(ClienteDTO clienteDTO) {
+        Cliente clienteNovo = new Cliente(clienteDTO.getId(), clienteDTO.getNome(), clienteDTO.getCpf(),
+                clienteDTO.getDataNascimento(), clienteDTO.getTermosPoliticas());
 
         clienteService.edit(clienteNovo);
 

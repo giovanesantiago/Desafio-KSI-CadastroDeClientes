@@ -19,6 +19,14 @@ public class Cliente {
     private Date dataNascimento;
     private Boolean termosPoliticas;
 
+    public Cliente(Long id, String nome, String cpf, Date dataNascimento, Boolean termosPoliticas) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
+        this.termosPoliticas = termosPoliticas;
+    }
+
     public Cliente(String nome, String cpf, Date dataNascimento, Boolean termosPoliticas) {
         this.nome = nome;
         this.cpf = cpf;
