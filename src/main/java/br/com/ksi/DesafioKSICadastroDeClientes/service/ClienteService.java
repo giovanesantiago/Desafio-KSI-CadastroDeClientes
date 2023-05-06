@@ -25,18 +25,20 @@ public class ClienteService {
         ModelAndView mv = new ModelAndView();
         List<String> mensagens = new ArrayList<>();
 
-        if(!validar.nome(clienteDTO.getNome())) {
+
+        if(!validar.nome(clienteDTO.getNome())) mensagens.add("Nome invalido");
+
+
+        if(mensagens.size() >= 1) {
             mv.setViewName("create");
-            mensagens.add("Nome invalido");
-            mv.addObject("cliente", clienteDTO);
             mv.addObject("msg", mensagens);
+            mv.addObject("cliente", clienteDTO);
         }else {
             Cliente cliente = new Cliente(clienteDTO.getNome(), clienteDTO.getCpf(),
                     clienteDTO.getDataNascimento(), clienteDTO.getTermosPoliticas());
             clienteRepository.save(cliente);
             mv.setViewName("confirmacaoCadastro");
         }
-
 
         return mv;
     }
