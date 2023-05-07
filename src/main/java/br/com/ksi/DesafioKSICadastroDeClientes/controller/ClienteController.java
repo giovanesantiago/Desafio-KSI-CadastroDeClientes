@@ -1,9 +1,11 @@
 package br.com.ksi.DesafioKSICadastroDeClientes.controller;
 
 import br.com.ksi.DesafioKSICadastroDeClientes.dto.ClienteDTO;
+import br.com.ksi.DesafioKSICadastroDeClientes.dto.JsonRetorno;
 import br.com.ksi.DesafioKSICadastroDeClientes.model.Cliente;
 import br.com.ksi.DesafioKSICadastroDeClientes.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -87,6 +90,17 @@ public class ClienteController {
         // Chamando service para excluir
         clienteService.delete(id);
         return "redirect:/painel"; // Recaregando painel sem o cliente deletado
+    }
+
+    // Metodo para chamada JSON
+    @GetMapping("/json")
+    public ResponseEntity<JsonRetorno> retornoJson() {
+        List<String> accepted = new ArrayList<>();
+        List<String> rejected = new ArrayList<>();
+        String google = "Google Pixel 2 XL (8.1.0)";
+        accepted.add(google);
+        JsonRetorno jsonRetorno = new JsonRetorno(accepted, rejected);
+        return ResponseEntity.ok(jsonRetorno);
     }
 
 }

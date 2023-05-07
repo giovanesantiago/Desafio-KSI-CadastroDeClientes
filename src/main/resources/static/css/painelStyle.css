@@ -7,6 +7,10 @@ body{
    color: white;  
 }
 
+#btn-json{
+    margin: 10px;
+}
+
 @media (max-width: 600px){
     body {
         padding: 5px 5px 5px 5px;
