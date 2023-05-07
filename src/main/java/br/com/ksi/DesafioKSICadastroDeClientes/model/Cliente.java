@@ -16,9 +16,8 @@ import java.util.Date;
 @Entity
 public class Cliente {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO) // Gerando id automatico
     private Long id;
-
 
     private String nome;
 

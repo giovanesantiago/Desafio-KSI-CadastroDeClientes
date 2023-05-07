@@ -21,6 +21,8 @@ public class ClienteController {
     @Autowired
     ClienteService clienteService;
 
+    // ROTAS
+
     // Rota para abrir painel como a pagina inicial
     @GetMapping("/")
     public String homeHTML(){
@@ -62,34 +64,29 @@ public class ClienteController {
         return mv;
     }
 
+
+    // Metodos de manipulação de dados
+
     // Metodo para cadastro de cliente
     @PostMapping("/create")
     public ModelAndView create(ClienteDTO clienteDTO) {
-
-        /*Cliente cliente = new Cliente(clienteDTO.getNome(), clienteDTO.getCpf(),
-                clienteDTO.getDataNascimento(), clienteDTO.getTermosPoliticas());*/
-
+        // Chamando Service para criar novo cliente
         return clienteService.create(clienteDTO);
     }
 
     // Metodo para editar cliente
     @PostMapping("/edit")
-    public String edit(ClienteDTO clienteDTO) {
-        Cliente clienteNovo = new Cliente(clienteDTO.getId(), clienteDTO.getNome(), clienteDTO.getCpf(),
-                clienteDTO.getDataNascimento(), clienteDTO.getTermosPoliticas());
-
-        clienteService.edit(clienteNovo);
-
-        return "redirect:/painel";
+    public ModelAndView edit(ClienteDTO clienteDTO) {
+        // Chamando Service para editar cliente
+        return clienteService.edit(clienteDTO);
     }
 
     // Metodo para Excluir cliente
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id){
-
+        // Chamando service para excluir
         clienteService.delete(id);
-
-        return "redirect:/painel";
+        return "redirect:/painel"; // Recaregando painel sem o cliente deletado
     }
 
 }

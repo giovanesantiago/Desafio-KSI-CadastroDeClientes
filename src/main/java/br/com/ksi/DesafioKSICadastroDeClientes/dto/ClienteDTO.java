@@ -8,7 +8,7 @@ public class ClienteDTO {
     private Long id;
     private String nome;
     private String cpf;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd") // Formata para aceita saida do input do HTML
     private Date dataNascimento;
     private Boolean termosPoliticas;
 

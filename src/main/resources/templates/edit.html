@@ -36,6 +36,10 @@
             th:value="${{cliente.dataNascimento}}" onchange="validaNasc(this.value)">
             <p id="invalid-nasc" class="invalid"></p>
         </div>
+        <div th:each = "mensagem : ${msg}">
+            <p id="invalid" class="invalid" th:text = ${mensagem}></p>
+        </div>
+        <br/>
         <button type="submit" class="btn btn-primary">Editar</button>
         <a class="btn-painel" href="/painel"><button type="button" class="btn btn-danger">Cancelar</button></a>
     </form>

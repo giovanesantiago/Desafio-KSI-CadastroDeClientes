@@ -11,16 +11,17 @@
 
     <title>Tela de cadastro</title>
 </head>
-<body onload="buttonOnOff(false)">
+<body onload="buttonOnOff(false)"> <!-- desabilitando botão ao abrir a pagina -->
 
     <!-- Formulario de cadastro -->
-    <form method="POST" action="/create" th:object="${cliente}"  class="form" >
-        <input type="hidden" name="id" th:value="${cliente.id} ">
+    <form method="POST" action="/create" th:object="${cliente}"  class="form" > 
+        <!-- Recebe um cliente para caso algum dado não validar  ele retornar a pagina com os dados digitados -->
+        <input type="hidden" name="id" th:value="${cliente.id} "> 
         <!-- Nome -->
         <div class="mb-3" >
             <label for="exampleInputEmail1" class="form-label">Nome</label>
             <input type="text" class="form-control" name="nome" th:value="${cliente.nome}" onchange="validaNome(this.value)">
-            <p id="invalid-nome" class="invalid"></p>
+            <p id="invalid-nome" class="invalid"></p> <!-- Paragrafo para mensagem de dados incorreto (Validação do Front) -->
         </div>
         <!-- CPF  -->
         <div class="mb-3">
@@ -36,10 +37,12 @@
         </div>
         <!-- Termos -->
         <div class="mb-3 form-check">
+            <!-- Onclick Habilitando botão de cadastro -->
             <input onclick="buttonOnOff(this.value)" type="checkbox" class="form-check-input" name="termosPoliticas">
             <label class="form-check-label" for="exampleCheck1">Concordo com os <a href="" onclick="abrirTermo()">termos de serviço e política de privacidade </a> da KSI Consultas</label>
         </div>
-        <div th:each = "mensagem : ${msg}">
+        <!-- Div para mensagens de dados incorretos (Validação do Back ) -->
+        <div th:each = "mensagem : ${msg}"> <!-- Each recebe um lista e cria um paragrafo para item(mensagem) -->
             <p id="invalid" class="invalid" th:text = ${mensagem}></p>
         </div>
         <br/>
