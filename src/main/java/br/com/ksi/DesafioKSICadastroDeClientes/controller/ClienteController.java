@@ -31,6 +31,7 @@ public class ClienteController {
     @GetMapping("/create")
     public ModelAndView createHTML(){
         ModelAndView mv = new ModelAndView("create");
+        // retornando um ModelAndView com um Cliente vazio, pois o Thymeleaf espera um objeto no HTML
         mv.addObject("cliente", new Cliente());
         return mv;
     }

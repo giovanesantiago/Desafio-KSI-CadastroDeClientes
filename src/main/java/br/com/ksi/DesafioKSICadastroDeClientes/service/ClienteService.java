@@ -9,7 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ClienteService {
@@ -27,7 +26,9 @@ public class ClienteService {
 
 
         if(!validar.nome(clienteDTO.getNome())) mensagens.add("Nome invalido");
-
+        if (!validar.cpf(clienteDTO.getCpf())) mensagens.add("CPF invalido");
+        if (!validar.nascimento(clienteDTO.getDataNascimento())) mensagens.add("Data de Nascimento invalida");
+        if (!validar.termos(clienteDTO.getTermosPoliticas())) mensagens.add("É necessario ler e aceitar os termos");
 
         if(mensagens.size() >= 1) {
             mv.setViewName("create");
